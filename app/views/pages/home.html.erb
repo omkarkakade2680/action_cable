@@ -1,0 +1,20 @@
+<div>
+    <div id="chatbox" style="height:250px; border: solid 1px #222222; overflow-y:scroll">
+        <% @messages.each do |message| %>
+            <%= render 'messages/message', message: message %>
+        <% end %>
+    </div>
+    <% if current_user %>
+    <%= form_with model: @message do |f| %>
+        <div>
+            <%= f.text_field :body, placeholder: 'Say somethin..', class: "form-control" %>
+            <div>
+                <%= f.submit "send", class: "btn btn-primary"%>
+            </div>
+        </div>
+    <% end %>
+    <% else %>
+                <%= link_to "Signed In", new_user_session_path%> in order to chat
+        <p>you need to  </p>
+    <% end %>
+</div>
